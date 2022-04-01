@@ -4,16 +4,17 @@ import com.base.data.entities.ShowListResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieDBPlanetService {
 
     @GET("now_playing")
-    fun nowPlayingShowList(): Response<ShowListResponse>
+    suspend fun nowPlayingShowList(): Response<ShowListResponse>
 
     @GET("upcoming")
-    fun upComingShowList(): Response<ShowListResponse>
+    suspend fun upComingShowList(@Query("page") page: Int): Response<ShowListResponse>
 
     @GET("{movie_id}")
-    fun showDetail(@Path("movie_id") moveId: String): Response<ShowListResponse>
+    suspend fun showDetail(@Path("movie_id") moveId: String): Response<ShowListResponse>
 
 }

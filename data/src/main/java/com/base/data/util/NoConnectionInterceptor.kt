@@ -9,8 +9,9 @@ import okhttp3.Response
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.Socket
+import javax.inject.Inject
 
-class NoConnectionInterceptor(private val context: Context) : Interceptor {
+class NoConnectionInterceptor @Inject constructor(private val context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         return if (!isConnectionOn()) {
             throw Throwable(context.getString(R.string.check_your_connection))

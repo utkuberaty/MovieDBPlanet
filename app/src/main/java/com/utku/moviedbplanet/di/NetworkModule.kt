@@ -49,6 +49,8 @@ object NetworkModule {
      * Uses [HttpLoggingInterceptor] to log responses or requests
      * */
 
+    @Provides
+    @Singleton
     fun noConnectionInterceptor(@ApplicationContext appContext: Context): NoConnectionInterceptor =
         NoConnectionInterceptor(appContext)
 
@@ -64,12 +66,13 @@ object NetworkModule {
             })
             .addInterceptor { chain ->
                 return@addInterceptor chain.proceed(
-                    chain.request().let {
-                        it.newBuilder()
-                            .header("api_key", ACCESS_TOKEN)
-                            .method(it.method, it.body)
+                    chain.request().newBuilder().url(
+                        chain.request()
+                            .url
+                            .newBuilder()
+                            .addQueryParameter("api_key", ACCESS_TOKEN)
                             .build()
-                    }
+                    ).build()
                 )
             }
             .addInterceptor(noConnectionInterceptor)
