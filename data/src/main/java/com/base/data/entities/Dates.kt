@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Dates(
-    val maximum: String,
-    val minimum: String
+    val maximum: String = "",
+    val minimum: String = ""
 )

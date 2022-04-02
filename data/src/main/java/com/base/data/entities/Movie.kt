@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Movie(
-    @SerialName("poster_path") val posterPath: String,
-    val overview: String,
+    @SerialName("poster_path") val posterPath: String = "",
+    val overview: String = "",
     @SerialName("original_title") val originalTitle: String = "",
     val title: String = "",
     @SerialName("release_date") val releaseDate: String = "",

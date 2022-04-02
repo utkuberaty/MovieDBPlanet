@@ -18,14 +18,14 @@ class MoviePagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         return try {
-            val nextPageNumber = params.key ?: 1
-            when (val response = remoteDataSource(nextPageNumber)) {
+            val pageIndex = params.key ?: 1
+            when (val response = remoteDataSource(pageIndex)) {
                 is Result.Success -> {
                     val nextKey = if (response.data?.totalPages != response.data?.page)
                         response.data?.page?.plus(1) else null
                     LoadResult.Page(
                         data = response.data?.results ?: listOf(),
-                        prevKey = if (nextPageNumber == 1) null else nextPageNumber,
+                        prevKey = if (pageIndex == 1) null else pageIndex,
                         nextKey = nextKey
                     )
                 }
