@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.LoadState
 import com.base.data.remote.Result
 import com.base.data.repository.MovieDBPlanetRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,34 +23,9 @@ class RootViewModel @Inject constructor(private val repository: MovieDBPlanetRep
     private val _showError = MutableLiveData<String?>()
     val showError: LiveData<String?> by ::_showError
 
-    private val _nowPlayingShowList = MutableLiveData<String?>()
-    val nowPlayingShowList: LiveData<String?> by ::_nowPlayingShowList
+    val nowPlayingShowList = repository.nowPlayingShowList().flow
 
-    fun upComingMovieList() {
-        viewModelScope.launch {
-            repository.upComingShowList().onStart {
-                _showProgress.value = true
-            }.onCompletion { _showProgress.value = false }.collect {
-                when (it) {
-                    is Result.Success -> {}
-                    is Result.Error -> _showError.value = it.exception
-                }
-            }
-        }
-    }
-
-    fun nowPlayingShowList() {
-        viewModelScope.launch {
-            repository.nowPlayingShowList().onStart {
-                _showProgress.value = true
-            }.onCompletion { _showProgress.value = false }.collect {
-                when (it) {
-                    is Result.Success -> {}
-                    is Result.Error -> _showError.value = it.exception
-                }
-            }
-        }
-    }
+    val upComingMovieList = repository.upComingShowList().flow
 
     fun showDetail(id: String) {
         viewModelScope.launch {
@@ -61,6 +37,14 @@ class RootViewModel @Inject constructor(private val repository: MovieDBPlanetRep
                     is Result.Error -> _showError.value = it.exception
                 }
             }
+        }
+    }
+
+    fun pagingStateController(state: LoadState) {
+        if (state is LoadState.Error) {
+            _showError.value = state.error.localizedMessage
+        } else {
+            _showProgress.value = state is LoadState.Loading
         }
     }
 

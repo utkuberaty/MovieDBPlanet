@@ -19,7 +19,7 @@ abstract class BaseFragment<VB : ViewBinding>(val bindingFactory: (LayoutInflate
 
     abstract val viewModel: ViewModel
 
-    internal val viewBinding: VB by lazy { bindingFactory(layoutInflater) }
+    protected val viewBinding: VB by lazy { bindingFactory(layoutInflater) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
