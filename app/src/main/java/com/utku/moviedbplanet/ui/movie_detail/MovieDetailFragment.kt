@@ -3,6 +3,7 @@ package com.utku.moviedbplanet.ui.movie_detail
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
 import android.text.SpannableString
@@ -53,10 +54,9 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>({
     }
 
     private fun intentIMDB(id: String) {
-        val sendIntent = Intent(Intent.ACTION_SEND)
-        val chooser = Intent.createChooser(sendIntent, id)
+        val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse("imdb:///title/$id"))
         try {
-            startActivity(chooser)
+            startActivity(sendIntent)
         } catch (ex: ActivityNotFoundException) {
             Toast.makeText(context, ex.localizedMessage, Toast.LENGTH_SHORT).show()
         }
