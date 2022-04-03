@@ -11,7 +11,6 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import coil.load
@@ -41,10 +40,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>({
         with(viewBinding) {
             viewModel.movieDetail.value?.let { movie ->
                 movieImageView.load("$BIG_IMAGE${movie.backdropPath}")
-                voteTextView.setText(
-                    voteText(movie.voteAverage.toString()),
-                    TextView.BufferType.SPANNABLE
-                )
+                voteTextView.text = voteText(movie.voteAverage.toString())
                 releaseDateTextView.text = movie.releaseDate
                 movieTitleTextView.text = movie.titleWithYear
                 movieDescriptionTextView.text = movie.overview
@@ -67,8 +63,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>({
         return SpannableString(text).apply {
             setSpan(
                 ForegroundColorSpan(Color.GRAY),
-                vote.length,
-                "/$MAX_VOTE".length,
+                vote.length, text.length,
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
