@@ -12,10 +12,10 @@
         android:scaleType="centerCrop"
         tools:src="@color/black" />
 
-    <View
+    <include
+        layout="@layout/overlay_black"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black_overlay"/>
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,21 +28,21 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movieTitleTextView"
+            fontPath="fonts/Roboto-Bold.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
             android:textSize="20sp"
-            fontPath="fonts/Roboto-Bold.ttf"
             tools:text="Moonrise Kingdom (2012)" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movieDescriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:lines="2"
             android:ellipsize="end"
+            android:lines="2"
+            android:textColor="@color/white"
             tools:text="A pair of young lovers flee their New England town, which causes a local search party to fan out to find them.A pair of young lovers flee their New England town, which causes a local search party to fan out to find them." />
 
     </LinearLayout>

@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/movieImageView"
@@ -30,22 +29,22 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movieTitleTextView"
+            fontPath="fonts/Roboto-Bold.ttf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            fontPath="fonts/Roboto-Bold.ttf"
             android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
             tools:text="Movie Title" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movieDescriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_gray"
-            android:lines="2"
             android:ellipsize="end"
+            android:lines="2"
+            android:textColor="@color/text_gray"
             android:textSize="13sp"
             tools:text="Long\nDescription" />
 
@@ -57,7 +56,7 @@
         android:layout_height="wrap_content"
         android:padding="19dp"
         android:src="@drawable/ic_arrow_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,10 +66,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toStartOf="@+id/arrowImageView"
         app:layout_constraintTop_toBottomOf="@+id/movieNameLinearLayout"
         tools:text="15.06.2021" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

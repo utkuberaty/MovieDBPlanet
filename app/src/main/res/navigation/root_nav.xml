@@ -12,7 +12,12 @@
         tools:layout="@layout/fragment_movie_listing">
         <action
             android:id="@+id/action_movieListingFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
+            app:destination="@id/movieDetailFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:popUpToInclusive="true"/>
     </fragment>
 
 

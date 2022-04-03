@@ -6,14 +6,17 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
 import com.base.data.entities.Movie
 import com.base.data.entities.MovieType
-import com.base.data.util.IMAGE_BASE_URL
+import com.base.data.util.BIG_IMAGE
 import com.utku.moviedbplanet.databinding.ItemNowPlayingMovieBinding
 import com.utku.moviedbplanet.databinding.ItemUpComingMovieBinding
+import com.utku.moviedbplanet.util.setOnSafeClickListener
 
 class MoviePagingAdapter(
-    private val movieType: MovieType
+    private val movieType: MovieType,
+    private val onClick: (String) -> Unit // Movie ID
 ) : PagingDataAdapter<Movie, RecyclerView.ViewHolder>(MovieComparator) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
@@ -43,6 +46,11 @@ class MoviePagingAdapter(
                 holder.bind(getItem(position))
             }
         }
+        holder.itemView.setOnSafeClickListener {
+            getItem(position)?.let {
+                onClick(it.id)
+            }
+        }
     }
 
     class UpComingViewHolder(
@@ -53,10 +61,12 @@ class MoviePagingAdapter(
             if (movie != null) {
                 with(viewBinding) {
                     with(movie) {
-                        movieImageView.load("$IMAGE_BASE_URL/w500$posterPath")
-                        movieTitleTextView.text = "$title(${releaseDate.split("-").first()})"
+                        movieImageView.load("$BIG_IMAGE$posterPath") {
+                            transformations(RoundedCornersTransformation(15f))
+                        }
+                        movieTitleTextView.text = titleWithYear
                         movieDescriptionTextView.text = overview
-                        movieReleaseDateTextView.text = releaseDate.replace("-",".")
+                        movieReleaseDateTextView.text = modifiedReleaseDate
                     }
                 }
             }
@@ -71,8 +81,8 @@ class MoviePagingAdapter(
             if (movie != null) {
                 with(viewBinding) {
                     with(movie) {
-                        movieImageView.load("$IMAGE_BASE_URL/w500$backdropPath")
-                        movieTitleTextView.text = "$title(${releaseDate.split("-").first()})"
+                        movieImageView.load("$BIG_IMAGE${backdropPath}")
+                        movieTitleTextView.text = titleWithYear
                         movieDescriptionTextView.text = overview
                     }
                 }

@@ -14,7 +14,13 @@ data class Movie(
     @SerialName("imdb_id") val imdbId: String = "",
     @SerialName("backdrop_path") val backdropPath: String = "",
     val id: String
-)
+) {
+    val titleWithYear
+    get() = "$title(${releaseDate.split("-").first()})"
+
+    val modifiedReleaseDate
+    get() = releaseDate.replace("-", ".")
+}
 
 enum class MovieType {
     UP_COMING, NOW_PLAYING

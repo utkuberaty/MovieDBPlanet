@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MovieDBPlanet</string>
+    <string name="dot">•</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.base.data.remote
 
+import com.base.data.entities.Movie
 import com.base.data.entities.MovieListResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -15,6 +16,6 @@ interface MovieDBPlanetService {
     suspend fun upComingShowList(@Query("page") page: Int): Response<MovieListResponse>
 
     @GET("{movie_id}")
-    suspend fun showDetail(@Path("movie_id") moveId: String): Response<MovieListResponse>
+    suspend fun showDetail(@Path("movie_id") moveId: String): Response<Movie>
 
 }

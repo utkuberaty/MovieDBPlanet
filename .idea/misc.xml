@@ -6,11 +6,13 @@
         <entry key="..\:/Users/yildi/.gradle/caches/transforms-3/2cdfc96f765a3c06ddda4841bf016484/transformed/coil-base-2.0.0-rc02/res/drawable/ic_100tb.xml" value="0.304" />
         <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/drawable/ic_arrow_icon.xml" value="0.1555" />
         <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/activity_root.xml" value="0.1" />
-        <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/fragment_movie_detail.xml" value="0.2390625" />
-        <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/fragment_movie_listing.xml" value="0.2390625" />
+        <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/fragment_movie_detail.xml" value="0.2857142857142857" />
+        <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/fragment_movie_listing.xml" value="0.18857142857142858" />
         <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/item_movie.xml" value="0.13240740740740742" />
-        <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/item_now_playing_movie.xml" value="0.3828571428571429" />
+        <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/item_now_playing_movie.xml" value="0.25181598062953997" />
         <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/item_up_coming_movie.xml" value="0.2857142857142857" />
+        <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/overlay_black.xml" value="0.2390625" />
+        <entry key="..\:/Users/yildi/AndroidStudioProjects/MovieDBPlanet/app/src/main/res/layout/progress_dialog.xml" value="0.2857142857142857" />
       </map>
     </option>
   </component>
