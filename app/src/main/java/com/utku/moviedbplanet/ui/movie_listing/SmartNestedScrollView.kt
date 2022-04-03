@@ -7,20 +7,36 @@ import android.view.ViewGroup
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 
-open class SmartNestedScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : NestedScrollView(context, attrs, defStyleAttr) {
+/**This nestedScrollView used for solving problem in paging adapter recyclerview that default nestedScrollView usage can cause loading all pages same time*/
+
+open class SmartNestedScrollView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+    NestedScrollView(context, attrs, defStyleAttr) {
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
     constructor(context: Context) : this(context, null)
 
-    override fun measureChildWithMargins(child: View?, parentWidthMeasureSpec: Int, widthUsed: Int, parentHeightMeasureSpec: Int, heightUsed: Int) {
+    override fun measureChildWithMargins(
+        child: View?,
+        parentWidthMeasureSpec: Int,
+        widthUsed: Int,
+        parentHeightMeasureSpec: Int,
+        heightUsed: Int
+    ) {
         if (findNestedRecyclerView(child) != null) {
             val lp = child?.layoutParams as MarginLayoutParams
             val childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
-                lp.topMargin + lp.bottomMargin, MeasureSpec.AT_MOST)
+                lp.topMargin + lp.bottomMargin, MeasureSpec.AT_MOST
+            )
             child.measure(parentWidthMeasureSpec, childHeightMeasureSpec)
         } else {
-            super.measureChildWithMargins(child, parentWidthMeasureSpec, widthUsed, parentHeightMeasureSpec, heightUsed)
+            super.measureChildWithMargins(
+                child,
+                parentWidthMeasureSpec,
+                widthUsed,
+                parentHeightMeasureSpec,
+                heightUsed
+            )
         }
     }
 
