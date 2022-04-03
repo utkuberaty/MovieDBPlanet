@@ -2,11 +2,11 @@ package com.utku.moviedbplanet.ui.root
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import com.base.ui.BaseActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.utku.moviedbplanet.R
 import com.utku.moviedbplanet.databinding.ActivityRootBinding
-import com.utku.moviedbplanet.util.TAG
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 
@@ -18,7 +18,11 @@ class RootActivity : BaseActivity<ActivityRootBinding>({ ActivityRootBinding.inf
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.showError.observe(this) {
-            Log.i(TAG, "showError $it")
+            MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.warning)
+                .setMessage(it)
+                .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+                .show()
         }
     }
 
